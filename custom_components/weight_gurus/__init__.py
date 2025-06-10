@@ -30,7 +30,7 @@ async def async_setup_entry(
     for platform in PLATFORMS:
         if entry.options.get(platform, True):
             coordinator.platforms.append(platform)
-            hass.async_add_job(
+            entry.async_create_task(
                 hass.config_entries.async_forward_entry_setups(entry, platform)
             )
 
